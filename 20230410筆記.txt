@@ -1,0 +1,19 @@
+selector { declaration } => selector { property:value; }
+           declaration 內容: property:value;
+
+1. inline 行內樣式
+   <h1 style="property:value;">  ==> inline 
+
+2. embeded style sheet 嵌入式
+   <head>
+      <style>
+               ==> embeded style sheet
+      </style>
+   </head>
+
+3. external style sheet
+   .css file
+   使用方式
+   <link></link>
+   HTML <link href="" rel="stylesheet"> 標籤 (tag) - 載入 CSS 樣式表
+   
