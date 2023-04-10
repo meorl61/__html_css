@@ -17,3 +17,5 @@ selector { declaration } => selector { property:value; }
    <link></link>
    HTML <link href="" rel="stylesheet"> 標籤 (tag) - 載入 CSS 樣式表
    
+驗證網頁
+https://html5.validator.nu/
