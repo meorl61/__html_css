@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+
+            blockquote{
+                border:dashed;
+                border-color:gray;
+                color:rgb(98, 167, 59);
+                background-color: bisque;
+                padding:5px;
+                text-indent: 2em;
+            }
+            blockquote{
+                border:0.3em blue double ;
+                background-clip:content-box; /*背景要放在什麼地方*/
+            }
+
+            a{
+                font-size:xxx-large;
+                text-decoration: none;
+            }
+            a:link{                
+                color:maroon;
+            }
+            a:visited{
+                color:gray;
+            }
+             a:hover{
+                font-size:medium;
+                background-color:#ffd9d9;
+             }
+             a:active{
+                color:red;
+                background-color:#00ffff;
+             }
+
+             /*偽元素 ::before */
+             p.warning::before {
+                content:"前面";
+                color:#ff0000;
+             }
+             p.warning::after {
+                content:"後面";
+                color:#ff0000;
+             }
+
+             blockquote.second {
+                background-clip: border-box;
+                color:#ffffff;
+
+                /* id/圖編號/寬/高*/
+            background-image: url("https://picsum.photos/id/484/200/400/");
+        }
+        </style>
+    </head>
+    <body>
+        <blockquote>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi excepturi ad inventore distinctio modi temporibus dignissimos commodi aliquam, eum cupiditate laborum nulla laboriosam tenetur sed numquam quos vero ea? Sequi?
+            Culpa laborum ut veniam Lorem ut labore culpa sit dolor pariatur minim enim duis. Sunt aute commodo et ad reprehenderit eiusmod ipsum. Nostrud consequat duis Lorem ut ex id. Excepteur mollit laboris laboris eiusmod elit. Velit reprehenderit ex commodo incididunt eu ea occaecat minim adipisicing pariatur ipsum consequat.
+     
+     Amet aliqua occaecat aute fugiat sint ipsum. Laboris ea in cupidatat commodo magna ullamco irure. In ad tempor eu fugiat eu culpa incididunt anim consequat nulla ad reprehenderit laborum fugiat. Ea qui eiusmod tempor velit quis id enim est. Velit ullamco ea ullamco ad dolore minim reprehenderit consectetur sunt aliqua esse. Commodo cillum et eiusmod voluptate qui amet incididunt occaecat sit.
+     
+     Eiusmod ea occaecat cillum officia adipisicing. Enim est magna reprehenderit velit eu aute commodo veniam. Ipsum velit fugiat et veniam ipsum consequat do occaecat culpa labore exercitation adipisicing minim ut.
+        </blockquote>
+
+        <a href="https://www.google.com">google</a>
+        <br>
+        <a href="https://www.google.coma">google2</a>
+       
+        <p class"warning">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et inventore ullam ratione recusandae tempore? Iste temporibus eum, amet quos cupiditate voluptatum culpa nobis maxime sequi tempore commodi numquam consequuntur repellat!</p>
+
+        <script src="" async defer></script>
+        <blockquote class="second">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut harum optio quidem voluptas, deleniti illo reprehenderit sapiente amet beatae, repellat aliquid quisquam! Quam molestias natus laborum optio animi, non quos.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum numquam consectetur molestias omnis distinctio cupiditate corrupti quos esse earum odio nulla ullam ab suscipit rem temporibus neque, id repellat saepe.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione commodi maxime cupiditate temporibus? Maxime enim neque atque facere modi minima vel provident, eaque ea odit consequuntur nostrum, eligendi illum deleniti.
+        </blockquote>
+    </body>
+</html>
