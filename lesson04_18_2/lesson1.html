@@ -6,12 +6,64 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
+        <style>
+            #container{
+                display:flex;
+                height:100px;
+                /*包裹
+                flex-wrap:wrap;
+                */
+
+                /*方向
+                flex-direction: row;
+                */
+
+                /*合併用法*/
+                /*flex-flow:row wrap;*/
+                justify-content:space-between;
+            }
+            /*
+            .box {
+                font-size:30px;
+                width:50px;
+                text-align: center;
+                padding:20px;
+                border-radius: 20px;
+                margin:10px;
+                border:5px dotted #9849ccd5;
+            }
+             
+            .box:hover{
+                border:8px dotted #b9cf3b;
+            }
+            */
+            .box1{
+                background-color: rgb(253, 11, 11);
+                width:25%;
+            }
+            .box2{
+                background-color: rgb(255, 166, 0);
+                width:25%;
+            }
+            .box3{
+                background-color: rgb(239, 255, 90);
+                width:25%;
+            }
+            .box4{
+                background-color: rgb(21, 255, 0);
+                width:15%;
+            }
+            .box5{
+                background-color: rgb(60, 161, 255);
+                width:25%;
+            }
+        </style>
     </head>
 
     <body>
         <div id="container">
-            <div class="box box1">1</div>
-            <div class="box box2">2</div>
+            <div class="box box1">1 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus, omnis rem. Qui, aut laboriosam. Iste, in maxime repellendus explicabo temporibus molestiae repellat, itaque, nemo est illum qui. Laudantium, quam odit.</div>
+            <div class="box box2">2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore, totam minus repudiandae quos laudantium rem iusto libero nisi, illum sed hic perspiciatis dignissimos, minima blanditiis quisquam id possimus quas!</div>
             <div class="box box3">3</div>
             <div class="box box4">4</div>
             <div class="box box5">5</div>
