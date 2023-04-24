@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+
+
+        <script src="https://superal.github.io/canvas2image/canvas2image.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+        <style>
+            @font-face {
+                font-family: 'bkt';
+                src: local("標楷體"),
+                    url('fonts/bkt.ttf') format('truetype'),
+                    url('fonts/bkt.woff') format('woff');
+            }
+
+            @font-face {
+                font-family: 'myfont01';
+                src: url('fonts/myfont01.ttf') format('truetype'),
+                    url('fonts/myfont01.woff') format('woff');
+            }
+
+            @font-face {
+                font-family: 'myfont02';
+                src: url('fonts/myfont02.ttf') format('truetype'),
+                    url('fonts/myfont02.woff') format('woff');
+
+            }
+
+            @font-face {
+                font-family: 'myfont03';
+                src: url('fonts/myfont03.ttf') format('truetype'),
+                    url('fonts/myfont03.woff') format('woff');
+            }
+
+            @font-face {
+                font-family: 'myfont04';
+                src: url('fonts/myfont04.ttf') format('truetype'),
+                    url('fonts/myfont04.woff') format('woff');
+            }
+
+            .fit-cover {
+                object-fit: cover;
+            }
+
+            .kfontrnd {
+                font-size: 7.3rem;
+                color: #000000;
+                /*letter-spacing: -0.05em;*/
+            }
+
+            @media (min-width: 576px) {
+                .kfontrnd {
+                    font-size: 9.7rem;
+                }
+            }
+
+            @media (min-width: 768px) {
+                .kfontrnd {
+                    font-size: 6.5rem;
+                }
+            }
+
+            @media (min-width: 992px) {
+                .kfontrnd {
+                    font-size: 10.2rem;
+                }
+            }
+
+            @media (min-width: 1200px) {
+                .kfontrnd {
+                    font-size: 11.2rem;
+                }
+            }
+
+            .kfontrndL {
+                font-size: 1.9rem;
+                color: #000000;
+                /*letter-spacing: 0.1em;*/
+                bottom: 6%;
+                line-height: 90%;
+            }
+
+            @media (min-width: 576px) {
+                .kfontrndL {
+                    font-size: 2.2rem;
+                    bottom: 6%;
+                    /*letter-spacing: 0.1em;*/
+                }
+            }
+
+            @media (min-width: 992px) {
+                .kfontrndL {
+                    font-size: 2.7rem;
+                    bottom: 6%;
+                    /*letter-spacing: 0.1em;*/
+                }
+            }
+
+            @media (min-width: 1200px) {
+                .kfontrndL {
+                    font-size: 3.2rem;
+                    bottom: 6%;
+                    /*letter-spacing: 0.1em;*/
+                }
+            }
+
+            .kfontrndR {
+                margin-top: 17%;
+                font-size: 2rem;
+                color: #000000;
+                /*letter-spacing: 0.1em;*/
+                line-height: 90%;
+            }
+
+            @media (min-width: 576px) {
+                .kfontrndR {
+                    margin-top: 17%;
+                    font-size: 2.5rem;
+                    /*letter-spacing: 0.1em;*/
+                }
+            }
+
+            @media (min-width: 992px) {
+                .kfontrndR {
+                    margin-top: 21%;
+                    font-size: 2.8rem;
+                    /*letter-spacing: 0.1em;*/
+                }
+            }
+
+            @media (min-width: 1200px) {
+                .kfontrndR {
+                    margin-top: 18%;
+                    font-size: 3.4rem;
+                    /*letter-spacing: 0.1em;*/
+                }
+            }
+
+            .goldline {
+                color: #000000;
+                text-shadow: 2px 2px 0px #ffc800;
+                /*text-shadow: 2px 2px 0px rgb(255, 200, 0), -2px -2px rgb(255, 200, 0);*/
+                /*text-shadow: 0 0 5px #ffc800, 0 0 5px #ffc800, 0 0 5px #ffc800, 0 0 5px #ffc800;*/
+
+            }
+
+
+            .goldwords {
+                color: rgb(255, 199, 0);
+                text-shadow: 0 0 BLACK;
+            }
+
+            .blackwords {
+                color: #000000;
+                text-shadow: 0 0 BLACK;
+            }
+
+            .kwordtype {
+                font-family: "bkt";
+            }
+
+            .table td,
+            .table th {
+
+                vertical-align: middle;
+            }
+
+            #total01 {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            #part01 {
+                width: 50%;
+                min-width: 436px;
+                max-width: 580px;
+            }
+
+            #part02 {
+                width: 50%;
+                min-width: 436px;
+                max-width: 580px;
+            }
+
+            @media (min-width:480px) {
+                #part01 {
+
+                    width: 100%;
+                    min-width: 436px;
+                }
+
+                #part02 {
+                    width: 100%;
+                    min-width: 436px;
+
+                }
+            }
+
+            #p101 {
+                position: relative;
+                min-width: 436px;
+                width: 100%;
+                height: 100%;
+            }
+
+            #virtualpic {
+                position: absolute;
+                min-width: 436px;
+                height: auto;
+                width: 100%;
+            }
+
+            #virtualpic2 {
+                opacity: 0;
+                /*透明度設為 0.5*/
+            }
+
+            #p102 {
+                position: absolute;
+                box-sizing: border-box;
+                width: 100%;
+                height: 100%;
+                font-family: 'bkt';
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: space-around;
+            }
+
+            #wordR {
+                font-size: calc(1.5em + 1vw + 1vh);
+                padding-top: calc(2.5em + 19%);
+                writing-mode: vertical-rl;
+                padding-right: 0.1em;
+                line-height: 0.9em;
+            }
+
+            #wordM {
+                font-size: calc(6.5em + 2vw + 2vh);
+                position: absolute;
+                writing-mode: vertical-rl;
+                align-self: center;
+            }
+
+            #wordL {
+                font-size: calc(1.2em + 1vw + 1vh);
+                align-self: end;
+                padding-bottom: calc(3.5em + 19%);
+                writing-mode: vertical-rl;
+                line-height: 0.9em;
+            }
+        </style>
+        <section id="picall">
+            <div id="total01">
+                <div id="part01">
+                    <div id="p101">
+                        <img src="data/finish/賀匾45x96.png" id="virtualpic">
+                        <div id="p102">
+                            <div id="wordM">開市大吉</div>                            
+                            <div id="wordR">開幕誌慶</div>
+                            <div id="wordL">癸卯年吉月吉時</div>                            
+                        </div>
+                        <img src="data/finish/賀匾45x96.png" id="virtualpic2">
+
+                    </div>
+                </div>
+                <div id="part02">
+                    <form name="form1" action="{{ sc_route('simulationgo') }}" method="post">
+                        {{ csrf_field() }}
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h4 class="card-title">模擬賀匾</h4>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-primary" type="button" onclick='sendorder()'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg">
+                                                <path
+                                                    d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z">
+                                                </path>
+                                            </svg>&nbsp;加入訂單
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr style="background-color: #fad3d3;">
+                                                <td style="background-color: #ff00001c;">尺寸(含框)</td>
+                                                <td>約 45cm X 92cm</td>
+                                                <input type="hidden" name="ordertitle" value="賀匾">
+                                            </tr>
+                                            <tr style="background-color: #f5e8e8;">
+                                                <td style="background-color: #ff00001c;">右行內容</td>
+                                                <td><textarea id='kwordR' onkeydown="ckwords('R',this.value)"
+                                                        onkeyup="ckwords('R',this.value)" maxcols="30" maxrows="2"
+                                                        cols="35" rows="2"
+                                                        style="word-break:break-all;overflow: hidden;resize:none ">開幕誌慶</textarea>
+                                                </td>
+                                            </tr>
+                                            <tr style="background-color: #f5e8e8;">
+                                                <td style="background-color: #ff00001c;">右行字體</td>
+                                                <td><select onchange="cgwords('R',this.value)">
+                                                        <option value="bkt">楷體</option>
+                                                        <option value="myfont02">粗隸書</option>
+                                                        <option value="myfont01">毛行書</option>
+                                                        <option value="myfont03">毛張楷</option>
+                                                        <option value="myfont04">毛華行書</option>
+                                                    </select></td>
+                                            </tr>
+                                            <tr style="background-color: #f5e8e8;">
+                                                <td style="background-color: #ff00001c;">右字顏色</td>
+
+                                                <td><select onchange="cgwordscolor('R',this.value)">
+                                                        <option value="B">黑字</option>
+                                                        <option value="BG">黑字金邊(+$500)</option>
+                                                        <option value="G">金字(+$500)</option>
+                                                    </select></td>
+                                            </tr>
+                                            <tr style="background-color: #fff3d1;">
+                                                <td style="background-color: #ff00001c;">中行內容</td>
+                                                <td><input type="text" maxlength=4 size=8
+                                                        onkeyup="ckwords('M',this.value)" value="開市大吉">*最多四個字</td>
+                                            </tr>
+                                            <tr style="background-color: #fff3d1;">
+                                                <td style="background-color: #ff00001c;">中行字體</td>
+                                                <td><select onchange="cgwords('M',this.value)">
+                                                        <option value="bkt">楷體</option>
+                                                        <option value="myfont02">粗隸書</option>
+                                                        <option value="myfont01">毛行書</option>
+                                                        <option value="myfont03">毛張楷</option>
+                                                        <option value="myfont04">毛華行書</option>
+                                                    </select></td>
+                                            </tr>
+                                            <tr style="background-color: #fff3d1;">
+                                                <td style="background-color: #ff00001c;">中字顏色</td><input id='Mwprice'
+                                                    name="Mwprice" value="0" type="hidden"><input id='Mwpricetype'
+                                                    name="rwpricetype" value="" type="hidden">
+                                                <td><select onchange="cgwordscolor('M',this.value)">
+                                                        <option value="B">黑字</option>
+                                                        <option value="BG">黑字金邊(+$500)</option>
+                                                        <option value="G">金字(+500)</option>
+                                                    </select></td>
+                                            </tr>
+                                            <tr style="background-color: #f5e8e8;">
+                                                <td style="background-color: #ff00001c;">左字內容</td>
+                                                <td><textarea id='kwordL' onkeydown="ckwords('L',this.value)"
+                                                        onkeyup="ckwords('L',this.value)" maxcols="30" maxrows="2"
+                                                        cols="35" rows="2"
+                                                        style="word-break:break-all;overflow: hidden;resize:none ">癸卯年吉月吉時</textarea>
+                                                </td>
+                                            </tr>
+                                            <tr style="background-color: #f5e8e8;">
+                                                <td style="background-color: #ff00001c;">左行字體</td>
+                                                <td><select onchange="cgwords('L',this.value)">
+                                                        <option value="bkt">楷體</option>
+                                                        <option value="myfont02">粗隸書</option>
+                                                        <option value="myfont01">毛行書</option>
+                                                        <option value="myfont03">毛張楷</option>
+                                                        <option value="myfont04">毛華行書</option>
+                                                    </select></td>
+                                            </tr>
+                                            <tr style="background-color: #f5e8e8;">
+                                                <td style="background-color: #ff00001c;">左字顏色</td><input name="Lwprice"
+                                                    id='Lwprice' value="0" type="hidden"><input id='Lwpricetype'
+                                                    name="rwpricetype" value="" type="hidden">
+                                                <td><select onchange="cgwordscolor('L',this.value)">
+                                                        <option value="B">黑字</option>
+                                                        <option value="BG">黑字金邊(+500)</option>
+                                                        <option value="G">金字(+500)</option>
+                                                    </select></td>
+                                            </tr>
+                                            <tr style="background-color: #fad3d3;">
+                                                <td style="background-color: #ff00001c;">訂購人姓名</td>
+                                                <td><Input type="text" name="orderuser"></td>
+                                            </tr>
+                                            <tr style="background-color: #fad3d3;">
+                                                <td style="background-color: #ff00001c;">聯絡電話</td>
+                                                <td><Input type="text" name="orderusertel"></td>
+                                            </tr>
+                                            <tr style="background-color: #fad3d3;">
+                                                <td style="background-color: #ff00001c;">交貨地址</td>
+                                                <td><Input type="text" name="orderuseraddr"></td>
+                                            </tr>
+
+                                            <tr style="background-color: #fad3d3;">
+                                                <td style="background-color: #ff00001c;">備註</td>
+                                                <td><textarea name="orderusermemo" rows="3" maxlength="60"
+                                                        onkeydown="this.value=this.value.substring(0,60)"
+                                                        onkeyup="this.value=this.value.substring(0,60)"
+                                                        style="word-break:break-all;overflow: hidden;resize:none "></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr style="background-color: #dcffea;">
+                                                <td style="background-color: #ff00001c;">金額</td>
+                                                <td><span id="ordertotal">$2,000</span></td>
+                                                <input id='Rwprice' name="Rwprice" value="0" type="hidden">
+
+                                            </tr>
+                                            <tr style="background-color: #dcffea;">
+                                                <td style="background-color: #ff00001c;">訂單備註</td>
+                                                <td><span id="ordermemo"></span></td>
+                                                <input id='Rwpricetype' name="rwpricetype" value="" type="hidden">
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <input type="hidden" name="orderpic" id="orderpic" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </section>
+        <div id="showimg"></div>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+        <script>
+
+            function sendorder3() {
+                var doc = new jsPDF();
+                //   html2canvas(document.querySelector('#picall'), {
+                //     onrendered: function(canvas) {
+                //       var image = canvas.toDataURL("image/png");
+                //       doc.addImage(image, 'JPEG', 0, 0, canvas.width, canvas.height);
+                //       doc.save('test.pdf');
+                //     }
+                //   });
+                html2canvas(document.querySelector('#total01'), {
+                    backgroundColor: "#ffffff",
+                    allowTaint: true, //開啟跨域
+                    useCORS: true,
+
+                    onrendered: function (canvas) {
+                        var image = canvas.toDataURL("image/png");
+                        doc.addImage(image, 'JPEG', 0, 0, canvas.width, canvas.height);
+                        doc.save('test.pdf');
+                    }
+                });
+
+            }
+
+
+            function sendorder4() {
+                var doc = new jsPDF();
+                //   html2canvas(document.querySelector('#picall'), {
+                //     onrendered: function(canvas) {
+                //       var image = canvas.toDataURL("image/png");
+                //       doc.addImage(image, 'JPEG', 0, 0, canvas.width, canvas.height);
+                //       doc.save('test.pdf');
+                //     }
+                //   });
+                html2canvas(document.querySelector('#picall'), {
+
+                    onrendered: function (canvas) {
+                        var image = canvas.toDataURL("image/png");
+                        doc.addImage(image, 'JPEG', 0, 0, canvas.width, canvas.height);
+                        doc.save('test.pdf');
+                    }
+                });
+
+            }
+            function sendorder() {
+                html2canvas(document.querySelector('#picall'), {
+                    backgroundColor: "#ffffff",
+                    allowTaint: true, //開啟跨域
+                    useCORS: true,
+                    scrollY: 0,
+                    scrollX: 0,
+                    onrendered: function (canvas) {
+                        //document.body.appendChild(canvas);
+                        // return Canvas2Image.saveAsPNG(canvas);
+                        var aaa = Canvas2Image.convertToJPEG(canvas);
+                        //console.log(aaa);
+
+                        var data = canvas.toDataURL("image/jpeg", 1);
+                        var b64 = data.split(",")[1];
+                        document.form1.orderpic.value = b64;
+                        //console.log(document.form1.orderpic.value,aaa,data,b64);
+
+                        //document.form1.submit();
+
+                        /*
+                       //base64图片数据
+                       //var dataurl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD......"; 
+                       var dataurl =data;
+                       //上传到服务器
+                       var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+                       bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+                       while(n--){
+                           u8arr[n] = bstr.charCodeAt(n);
+                       }
+                       var obj = new Blob([u8arr], {type:mime});
+                       var fd = new FormData();
+                       fd.append("upfile", obj,"image.png");
+                       */
+
+                        /*
+                        $.ajax({
+                            url: "/file/upfile",
+                            type: "POST",
+                            processData: false,
+                            contentType: false,
+                            data: fd,
+                            success: function (data) {
+                                console.log(data);
+                            }
+                        });
+        
+                        //保存图片到本地 
+                        (function(t){
+                            var dlLink = t || document.createElement("a");
+                            if(!t){
+                                dlLink.id='dlLink';
+                                dlLink.download = '文件名'; 
+                                document.body.appendChild(dlLink);
+                            }
+                            dlLink.href = dataurl;
+                            dlLink.click();
+                        })(document.querySelector("#dlLink"));
+        
+                        //显示为网页图片
+                        &lt;img id="testImg" src="" /&gt;
+                        document.querySelector("#testImg").src = dataurl;
+        
+        */
+
+                        //document.getElementById("checkphoto").remove();
+
+
+                        $("#checkphoto").remove();
+                        //document.body.removeChild(img);
+                        var img = new Image();
+                        img.src = 'data:image/jpeg;base64,' + b64;
+                        img.setAttribute("id", "checkphoto");
+
+                        //将img容器添加到html的节点中。
+                        document.body.appendChild(img);
+                        //  document.body.removeChild(img);
+                        //throwawayNode = d.appendChild(d_nested);
+
+
+
+                    }
+                });
+            }
+
+
+
+            function ckwords($id, $type) {
+                $br = "";
+                $showword = "";
+                $nword = "";
+                $wordinfo = $type.split('\n');
+                //alert($wordinfo.length);
+
+                len = $wordinfo.length;
+                if (len > 2) {
+                    $wordinfo.splice(2);
+                    len = 2;
+                }
+                realline = 0;
+                formatInfo = "";
+                for (var i = 0; i < len; i++) {
+                    //判斷每行是否 > maxCol
+                    var arr = getBreak($wordinfo[i]);
+
+                    if (arr.length > 2) {
+                        arr.splice(2);
+                    }
+                    console.log('arr', arr, arr.length);
+                    if (arr.length > 0) {
+                        for (var j = 0; j < arr.length; j++) {
+                            realline++;
+                            if (realline <= 2) {
+                                formatInfo += arr[j] + ((realline < 2 && (i + 1 < len || j + 1 < arr.length)) ? "\n" : "");
+                            }
+                        }
+
+                    }
+
+                }
+
+                //console.log('formatInfo',formatInfo,len);
+                //$showword=$showword+$br+$wordinfo[$i-1];
+                //    $br="<br>";
+                $showword = formatInfo.replace('\n', '<br>');
+                $("#word" + $id).html($showword);
+                $("#kword" + $id).val(formatInfo);
+
+            }
+
+            function getBreak(v) {
+                if (v == "") { return []; }
+
+                var arr = [];
+                var arrword = [];
+                var len = 0; //中英字符長度計數    
+                var count = 0; //實際字符個數計數
+                var temp = -1; //判斷換行。（例如 每行限制20字符，上一次檢測為19字符，下一次+2字符 則跳過了）
+                var lastCount = 0;// 和上一個參數配合使用   如果是跳過，則使用此參數
+                var maxCol = 30;
+                var nword = '';
+                //計算
+                for (i = 0; i < v.length; i++) {
+                    nword += v.substr(count, 1);
+                    var c = v.charCodeAt(i);
+                    if ((c >= 0x0001 && c <= 0x007e) || (0xff60 <= c && c <= 0xff9f)) { len++; } else { len += 2; }
+                    count++;
+                    console.log('count', count);
+                    //不是首行第0個 空字符
+                    var cut = Math.floor(len / maxCol)
+                    if (temp != -1 && cut != temp) {
+                        console.log('temp', temp, 'cut', cut);
+                        //跳過
+                        if (len % maxCol != 0) {
+                            console.log('lastCount', lastCount);
+                            arr.push(lastCount)
+                            nword += '\n';
+                            arrword.push(nword);
+                            nword = '';
+
+                        }
+                        else //正好
+                        {
+                            console.log('eqcount', count);
+                            arr.push(count);
+                            arrword.push(nword);
+                            nword = '';
+                        }
+                    }
+
+                    temp = cut;
+                    lastCount = count;
+                }
+                arrword.push(nword);
+                nword = '';
+                //console.log('arrword',arrword,arrword.length);
+                //console.log(lastCount,len,maxCol);
+                //矯正， 如果剛好是臨界值 則抹去最后一次換行
+                if (len % maxCol == 0 && arr.length > 0) {
+                    arr.splice(arr.length - 1, 1)
+                    arrword.splice(arrword.length - 1, 1)
+                }
+
+                return arrword
+            }
+
+            function cgwordscolor($id, $type) {
+                let element = document.getElementById("word" + $id);
+                element.classList.remove("goldline", "goldwords", "blackwords");
+                if ($id == "M") {
+                    //$("#word"+$id).css('color', '');
+                    // $("#word"+$id).css({ "text-shadow" : "0px 0px black" });
+                }
+                switch ($type) {
+                    case 'B':
+                        element.classList.add("blackwords");
+                        $('#' + $id + 'wprice').val(0);
+                        $('#' + $id + 'wpricetype').val('');
+                        break;
+
+                    case 'BG':
+                        element.classList.add("goldline");
+
+                        var number = 3000;
+                        var mynumeral = '$' + number.toLocaleString();
+                        $('#' + $id + 'wpricetype').val(($id == 'L' ? '左行字' : ($id == 'M' ? '中字' : '右行字')) + "描金邊加500");
+                        $('#' + $id + 'wprice').val(500);
+                        break;
+                    case 'G':
+                        element.classList.add("goldwords");
+                        var number = 2500;
+                        $('#' + $id + 'wpricetype').val(($id == 'L' ? '左行字' : ($id == 'M' ? '中字' : '右行字')) + "金字加500");
+                        $('#' + $id + 'wprice').val(500);
+                        break;
+
+                    default:
+                        $("#word" + $id).css('color', '#000000');
+                        $("#word" + $id).css({ "text-shadow": "0px 0px" });
+                        break;
+
+                }
+
+                sumtotal();
+            }
+
+            function sumtotal() {
+                var total = 2000 + parseInt($('#Rwprice').val()) + parseInt($('#Mwprice').val()) + parseInt($('#Lwprice').val());
+                //console.log(total,parseInt($('#Rwprice').val()),parseInt($('#Mwprice').val()),parseInt($('#Lwprice').val()));
+                str = "賀匾2000";
+                str += ($('#Rwpricetype').val() == "" ? "" : "<br>") + $('#Rwpricetype').val();
+                str += ($('#Mwpricetype').val() == "" ? "" : "<br>") + $('#Mwpricetype').val();
+                str += ($('#Lwpricetype').val() == "" ? "" : "<br>") + $('#Lwpricetype').val();
+                $("#ordermemo").html(str);
+                $("#ordertotal").html('$' + total.toLocaleString());
+            }
+
+            function cgwords($id, $wordtype) {
+                $("#word" + $id).css({ "font-family": $wordtype });
+
+
+            }
+
+        </script>
+
+    </body>
+
+</html>
