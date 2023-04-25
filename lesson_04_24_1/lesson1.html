@@ -12,6 +12,13 @@
         <!-- <link rel="stylesheet" href="css/normalize.css"> -->
         <title>Document</title>
         <style>
+            @font-face {
+                font-family: 'bkt';
+                src: local("標楷體"),
+                    url('fonts/bkt.ttf') format('truetype'),
+                    url('fonts/bkt.woff') format('woff');
+            }
+
             body {
                 margin: 2em 5% 2em 5%;
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -153,12 +160,29 @@
                 /*background-color: red;*/
                 flex: 0 1 40px;
             }
+
+            #word1,
+            #word2,
+            #word3 {
+                font-family: bkt;
+            }
+
             .goldline {
                 color: #000000;
-                text-shadow: 2px 2px 0px #ffc800;
+                text-shadow: 0 0 5px #ffc800, 0 0 5px #ffc800, 0 0 5px #ffc800, 0 0 5px #ffc800;
                 /*text-shadow: 2px 2px 0px rgb(255, 200, 0), -2px -2px rgb(255, 200, 0);*/
                 /*text-shadow: 0 0 5px #ffc800, 0 0 5px #ffc800, 0 0 5px #ffc800, 0 0 5px #ffc800;*/
 
+            }
+
+            .goldwords {
+                color: rgb(255, 199, 0);
+                text-shadow: 0 0 BLACK;
+            }
+
+            .blackwords {
+                color: #000000;
+                text-shadow: 0 0 BLACK;
             }
         </style>
     </head>
@@ -178,7 +202,7 @@
 
             </header>
             <section id="banner">
-                <h3 class="goldline">Centered hero</h3>
+                <h3 id="word1">測試中文字型111</h3>
                 <p>Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular
                     front-end open source toolkit, featuring Sass variables and mixins, responsive grid system,
                     extensive prebuilt components, and powerful JavaScript plugins.</p>
@@ -188,27 +212,27 @@
                 </div>
             </section>
             <main>
-                <h3 class="goldline">
-                    Columns with icons
+                <h3 id="word2">
+                    測試中文字型
                 </h3>
                 <div id="icons">
                     <section>
                         <img src="archive.png" alt="icon1">
-                        <h4 class="goldline">Featured title</h4>
+                        <h4 id="word3">測試中文字型</h4>
                         <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another
                             sentence and probably just keep going until we run out of words. </p>
                         <p><a href="#">Call to action ></a></p>
                     </section>
                     <section>
                         <img src="icon.png" alt="icon2">
-                        <h4 class="goldline">Featured title</h4>
+                        <h4>Featured title</h4>
                         <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another
                             sentence and probably just keep going until we run out of words. </p>
                         <p><a href="#">Call to action ></a></p>
                     </section>
                     <section>
                         <img src="icon2.png" alt="icon3">
-                        <h4 class="goldline">Featured title</h4>
+                        <h4>Featured title</h4>
                         <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another
                             sentence and probably just keep going until we run out of words. </p>
                         <p><a href="#">Call to action ></a></p>
@@ -220,14 +244,36 @@
                 <p><a href="#"><img src="twitter.png" alt=""></a></p>
                 <p><a href="#"><img src="Facebook.png" alt=""></a></p>
                 <p><a href="#"><img src="instagram.png" alt=""></a></p>
-
-
             </footer>
         </div>
 
         <br>
         <br>
         <hr>
+        <table>
+            <tr>
+                <td>word1</td>
+                <td>word2</td>
+                <td>word3</td>
+            </tr>
+            <tr>
+                <td><select onchange="cgwordscolor('1',this.value)">
+                        <option value="B">黑字</option>
+                        <option value="BG">黑字金邊(+$500)</option>
+                        <option value="G">金字(+$500)</option>
+                    </select></td>
+                <td><select onchange="cgwordscolor('2',this.value)">
+                        <option value="B">黑字</option>
+                        <option value="BG">黑字金邊(+$500)</option>
+                        <option value="G">金字(+$500)</option>
+                    </select></td>
+                <td><select onchange="cgwordscolor('3',this.value)">
+                        <option value="B">黑字</option>
+                        <option value="BG">黑字金邊(+$500)</option>
+                        <option value="G">金字(+$500)</option>
+                    </select></td>
+            </tr>
+        </table>
         <button onclick="sendorder()">截圖</button>
         <br><br>
         <script>
@@ -250,7 +296,6 @@ html2canvas(dom, options).then(canvas => {
                     scrollX: 0,
                     onrendered: function (canvas) {
                         //var aaa = Canvas2Image.convertToJPEG(canvas);
-
                         var data = canvas.toDataURL("image/png", 1);
                         var b64 = data.split(",")[1];
                         //document.form1.orderpic.value = b64;
@@ -265,42 +310,43 @@ html2canvas(dom, options).then(canvas => {
                         document.body.appendChild(img);
                         //  document.body.removeChild(img);
                         //throwawayNode = d.appendChild(d_nested);
-
-
-
                     }
                 });
             }
 
-            function sendorder2() {
-                html2canvas(document.querySelector('#picall'), {
-                    background: "#fff",
-                    allowTaint: true, //開啟跨域
-                    useCORS: true,
-                    scrollY: 0,
-                    scrollX: 0,
-                    onrendered: function (canvas) {
-                        //var aaa = Canvas2Image.convertToJPEG(canvas);
+            function cgwordscolor($id, $type) {
+                let element = document.getElementById("word" + $id);
+                element.classList.remove("goldline", "goldwords", "blackwords");
+                switch ($type) {
+                    case 'B':
+                        element.classList.add("blackwords");
+                        $('#' + $id + 'wprice').val(0);
+                        $('#' + $id + 'wpricetype').val('');
+                        break;
 
-                        var data = canvas.toDataURL("image/jpeg", 1);
-                        var b64 = data.split(",")[1];
-                        //document.form1.orderpic.value = b64;
+                    case 'BG':
+                        element.classList.add("goldline");
 
-                        $("#checkphoto").remove();
-                        //document.body.removeChild(img);
-                        var img = new Image();
-                        img.src = 'data:image/jpeg;base64,' + b64;
-                        img.setAttribute("id", "checkphoto");
+                        var number = 3000;
+                        var mynumeral = '$' + number.toLocaleString();
+                        $('#' + $id + 'wpricetype').val(($id == 'L' ? '左行字' : ($id == 'M' ? '中字' : '右行字')) + "描金邊加500");
+                        $('#' + $id + 'wprice').val(500);
+                        break;
+                    case 'G':
+                        element.classList.add("goldwords");
+                        var number = 2500;
+                        $('#' + $id + 'wpricetype').val(($id == 'L' ? '左行字' : ($id == 'M' ? '中字' : '右行字')) + "金字加500");
+                        $('#' + $id + 'wprice').val(500);
+                        break;
 
-                        //将img容器添加到html的节点中。
-                        document.body.appendChild(img);
-                        //  document.body.removeChild(img);
-                        //throwawayNode = d.appendChild(d_nested);
+                    default:
+                        $("#word" + $id).css('color', '#000000');
+                        $("#word" + $id).css({ "text-shadow": "0px 0px" });
+                        break;
 
+                }
 
-
-                    }
-                });
+                sumtotal();
             }
         </script>
     </body>
