@@ -1,249 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <style>
-            #layout {
-                
-                display: grid;
-                grid-template-columns: 100%;
-                grid-template-rows: 3em auto auto 5em;
-                grid-template-areas:
-                    "header"
-                    "section"
-                    "main"
-                    "footer";
-                
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #layout {
 
-            header {
-                grid-area: header;
-            }
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-rows: 3em auto auto 5em;
+            grid-template-areas:
+                "header"
+                "section"
+                "main"
+                "footer";
+            justify-items: center;
+        }
 
-            section {
-                
-                width:auto;
-                grid-area: section;
-            }
+        header {
+            grid-area: header;
+        }
+
+        section {
+            max-width: 500px;
+            width: auto;
+            grid-area: section;
+        }
+
+        main {
+            grid-area: main;
+        }
+
+        footer {
+            grid-area: footer;
+        }
+
+        #picarea {
+            max-width: 500px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            writing-mode: vertical-rl;
+        }
+
+        #picarea::after {
+            display: block;
+            content: "";
+            clear: both;
+        }
+
+        #picimg {
             
-            main {
-                grid-area: main;
-            }
+            
+        }
 
-            footer {
-                grid-area: footer;
-            }
+        /*
+        #picimg img {
+            width: 100%;
+            max-width: 500px;
 
-            #picarea {
-                position:relative;
-                display:flex;
-                justify-content: center;
-            }
-            #picarea::after{
-                display:block;
-                content: "";
-                clear:both;
-            }
-            #picimgarea img {
-                width:auto;
-                max-height:650px;
-                
-            }
+        }
+*/
+        #picword {
+            background-image: url(../data/finish/賀匾45x96.png);
+            width: 100%;
+            /*position: absolute;*/
+            display: grid;
+            grid-template-rows: 1fr 2fr 1fr;
+            grid-template-columns: auto;
+        }
 
-            #picwordarea {
-                position:absolute;
+        #spacea {
+            grid-area: spacea;
+        }
 
-            }
+        #spaceb {
+            grid-area: spaceb;
+        }
 
-            #setarea {
+        #setarea {}
 
-            }
+        /* () 裡面設中斷點 */
+        @media(min-width:768px) {
+            #layout {
 
-            /* () 裡面設中斷點 */
-            @media(min-width:768px) {
-                #layout {
-                
                 display: grid;
-                grid-template-columns: 50% 50%;
+                grid-template-columns: auto minmax(300px, 500px) minmax(300px, 500px) auto;
                 grid-template-rows: 3em auto 5em;
                 grid-template-areas:
-                    "header header"
-                    "section main"
-                    "footer footer";
+                    "header header header header"
+                    "spacea section main spaceb"
+                    "footer footer footer footer";
+
             }
-             
-            }
 
-            @media(min-width:1200px) {
 
-           
-            }
-        </style>
-    </head>
+        }
 
-    <body>
-        <div id="layout">
-            <header>
-                Header
-            </header>
-            <section>
-                <div id="picarea">
-                    <div id="picimgarea">
-                        <img src="../data/finish/賀匾45x96.png" alt="" width="100%">
-                    </div>
-                    <div id="picwordarea">
-                        <div>leftword</div>
-                        <div>middleword</div>
-                        <div>rightword</div>
-                    </div>
+        @media(min-width:1200px) {}
+    </style>
+</head>
 
+<body>
+    <div id="layout">
+        <header>
+            Header
+        </header>
+        <div id="spacea"> </div>
+        <section>
+            <div id="picarea">
+                <div id="picimg">
+                    <!--
+                     <img src="../data/finish/賀匾45x96.png" alt="" width="100%">
+                -->
                 </div>
-            </section>
-            <main>
-                
-                <div id="setarea">
-                    <table class="table">
-                        <tbody>
-                            <tr style="background-color: #fad3d3;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">尺寸(含框)</td>
-                                <td>約 45cm X 92cm</td>
-                                <input type="hidden" name="ordertitle" value="賀匾45cm X 92cm">
-                            </tr>
-                            <tr style="background-color: #f5e8e8;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">右行內容</td>
-                                <td><textarea name="kwordR" id='kwordR' onkeydown="ckwords('R',this.value)"
-                                        onkeyup="ckwords('R',this.value)" maxcols="30" maxrows="2" cols="35" rows="2"
-                                        style="word-break:break-all;overflow: hidden;resize:none ">開幕誌慶</textarea>
-                                </td>
-                            </tr>
-                            <tr style="background-color: #f5e8e8;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">右行字體</td>
-                                <td><select name="kwordRtype" onchange="cgwords('R',this.value)">
-                                        <option value="bkt">楷體</option>
-                                        <option value="myfont02">粗隸書</option>
-                                        <option value="myfont01">毛行書</option>
-                                        <option value="myfont03">毛張楷</option>
-                                        <option value="myfont04">毛華行書</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr style="background-color: #f5e8e8;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">右字顏色</td>
-
-                                <td><select name="kwordRcolor" onchange="cgwordscolor('R',this.value)">
-                                        <option value="B">黑字</option>
-                                        <!--<option value="BG">黑字金邊(+$500)</option>-->
-                                        <option value="G">金字(+$500)</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr style="background-color: #fff3d1;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">中行內容</td>
-                                <td><input name="kwordM" type="text" maxlength=4 size=8
-                                        onkeyup="ckwords('M',this.value)" value="開市大吉">*最多四個字
-                                </td>
-                            </tr>
-                            <tr style="background-color: #fff3d1;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">中行字體</td>
-                                <td><select name="kwordMtype" onchange="cgwords('M',this.value)">
-                                        <option value="bkt">楷體</option>
-                                        <option value="myfont02">粗隸書</option>
-                                        <option value="myfont01">毛行書</option>
-                                        <option value="myfont03">毛張楷</option>
-                                        <option value="myfont04">毛華行書</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr style="background-color: #fff3d1;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">中字顏色</td>
-                                <input id='Mwprice' name="Mwprice" value="0" type="hidden">
-                                <input id='Mwpricetype' name="rwpricetype" value="" type="hidden">
-                                <td><select name="kwordMcolor" onchange="cgwordscolor('M',this.value)">
-                                        <option value="B">黑字</option>
-                                        <!--<option value="BG">黑字金邊(+$500)</option>-->
-                                        <option value="G">金字(+500)</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr style="background-color: #f5e8e8;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">左字內容</td>
-                                <td><textarea name="kwordL" id='kwordL' onkeydown="ckwords('L',this.value)"
-                                        onkeyup="ckwords('L',this.value)" maxcols="30" maxrows="2" cols="35" rows="2"
-                                        style="word-break:break-all;overflow: hidden;resize:none ">癸卯年吉月吉時</textarea>
-                                </td>
-                            </tr>
-                            <tr style="background-color: #f5e8e8;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">左行字體</td>
-                                <td><select name="kwordLtype" onchange="cgwords('L',this.value)">
-                                        <option value="bkt">楷體</option>
-                                        <option value="myfont02">粗隸書</option>
-                                        <option value="myfont01">毛行書</option>
-                                        <option value="myfont03">毛張楷</option>
-                                        <option value="myfont04">毛華行書</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr style="background-color: #f5e8e8;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">左字顏色</td>
-                                <input name="Lwprice" id='Lwprice' value="0" type="hidden">
-                                <input id='Lwpricetype' name="rwpricetype" value="" type="hidden">
-                                <td><select name="kwordLcolor" onchange="cgwordscolor('L',this.value)">
-                                        <option value="B">黑字</option>
-                                        <!--<option value="BG">黑字金邊(+500)</option>-->
-                                        <option value="G">金字(+500)</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr style="background-color: #fad3d3;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">訂購人姓名</td>
-                                <td><Input type="text" name="orderuser"></td>
-                            </tr>
-                            <tr style="background-color: #fad3d3;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">聯絡電話</td>
-                                <td><Input type="text" name="orderusertel"></td>
-                            </tr>
-                            <tr style="background-color: #fad3d3;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">EMail</td>
-                                <td><Input type="text" name="orderuseremail"></td>
-                            </tr>
-                            <tr style="background-color: #fad3d3;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">交貨地址</td>
-                                <td><Input type="text" name="orderuseraddr"></td>
-                            </tr>
-
-                            <tr style="background-color: #fad3d3;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">備註</td>
-                                <td><textarea name="orderusermemo" rows="3" maxlength="60"
-                                        onkeydown="this.value=this.value.substring(0,60)"
-                                        onkeyup="this.value=this.value.substring(0,60)"
-                                        style="word-break:break-all;overflow: hidden;resize:none "></textarea>
-                                </td>
-                            </tr>
-                            <tr style="background-color: #dcffea;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">金額</td>
-                                <td><span id="ordertotal">$2,000</span></td>
-
-                                <input id='Rwprice' name="Rwprice" value="0" type="hidden">
-                            </tr>
-                            <tr style="background-color: #dcffea;">
-                                <td class="tdshow1" style="background-color: #ff00001c;">訂單備註</td>
-                                <td><span id="ordermemo"></span></td>
-                                <input id='Rwpricetype' name="rwpricetype" value="" type="hidden">
-                            </tr>
-
-                        </tbody>
-                    </table>
-                    <input type="hidden" name="orderpic" id="orderpic" />
+                <div id="picword">
+                    <div id="wordM">開市大吉</div>
+                    <div id="wordR">開幕誌慶</div>
+                    <div id="wordL">癸卯年吉月吉時</div>
                 </div>
-            </main>
-            <footer>
-                Footer
-            </footer>
-        </div>
-    </body>
+
+            </div>
+        </section>
+
+        <main>
+
+            <div id="setarea">
+                <table class="table">
+                    <tbody>
+                        <tr style="background-color: #fad3d3;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">尺寸(含框)</td>
+                            <td>約 45cm X 92cm</td>
+                            <input type="hidden" name="ordertitle" value="賀匾45cm X 92cm">
+                        </tr>
+                        <tr style="background-color: #f5e8e8;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">右行內容</td>
+                            <td><textarea name="kwordR" id='kwordR' onkeydown="ckwords('R',this.value)"
+                                    onkeyup="ckwords('R',this.value)" maxcols="30" maxrows="2" cols="35" rows="2"
+                                    style="word-break:break-all;overflow: hidden;resize:none ">開幕誌慶</textarea>
+                            </td>
+                        </tr>
+                        <tr style="background-color: #f5e8e8;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">右行字體</td>
+                            <td><select name="kwordRtype" onchange="cgwords('R',this.value)">
+                                    <option value="bkt">楷體</option>
+                                    <option value="myfont02">粗隸書</option>
+                                    <option value="myfont01">毛行書</option>
+                                    <option value="myfont03">毛張楷</option>
+                                    <option value="myfont04">毛華行書</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr style="background-color: #f5e8e8;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">右字顏色</td>
+
+                            <td><select name="kwordRcolor" onchange="cgwordscolor('R',this.value)">
+                                    <option value="B">黑字</option>
+                                    <!--<option value="BG">黑字金邊(+$500)</option>-->
+                                    <option value="G">金字(+$500)</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr style="background-color: #fff3d1;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">中行內容</td>
+                            <td><input name="kwordM" type="text" maxlength=4 size=8 onkeyup="ckwords('M',this.value)"
+                                    value="開市大吉">*最多四個字
+                            </td>
+                        </tr>
+                        <tr style="background-color: #fff3d1;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">中行字體</td>
+                            <td><select name="kwordMtype" onchange="cgwords('M',this.value)">
+                                    <option value="bkt">楷體</option>
+                                    <option value="myfont02">粗隸書</option>
+                                    <option value="myfont01">毛行書</option>
+                                    <option value="myfont03">毛張楷</option>
+                                    <option value="myfont04">毛華行書</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr style="background-color: #fff3d1;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">中字顏色</td>
+                            <input id='Mwprice' name="Mwprice" value="0" type="hidden">
+                            <input id='Mwpricetype' name="rwpricetype" value="" type="hidden">
+                            <td><select name="kwordMcolor" onchange="cgwordscolor('M',this.value)">
+                                    <option value="B">黑字</option>
+                                    <!--<option value="BG">黑字金邊(+$500)</option>-->
+                                    <option value="G">金字(+500)</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr style="background-color: #f5e8e8;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">左字內容</td>
+                            <td><textarea name="kwordL" id='kwordL' onkeydown="ckwords('L',this.value)"
+                                    onkeyup="ckwords('L',this.value)" maxcols="30" maxrows="2" cols="35" rows="2"
+                                    style="word-break:break-all;overflow: hidden;resize:none ">癸卯年吉月吉時</textarea>
+                            </td>
+                        </tr>
+                        <tr style="background-color: #f5e8e8;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">左行字體</td>
+                            <td><select name="kwordLtype" onchange="cgwords('L',this.value)">
+                                    <option value="bkt">楷體</option>
+                                    <option value="myfont02">粗隸書</option>
+                                    <option value="myfont01">毛行書</option>
+                                    <option value="myfont03">毛張楷</option>
+                                    <option value="myfont04">毛華行書</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr style="background-color: #f5e8e8;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">左字顏色</td>
+                            <input name="Lwprice" id='Lwprice' value="0" type="hidden">
+                            <input id='Lwpricetype' name="rwpricetype" value="" type="hidden">
+                            <td><select name="kwordLcolor" onchange="cgwordscolor('L',this.value)">
+                                    <option value="B">黑字</option>
+                                    <!--<option value="BG">黑字金邊(+500)</option>-->
+                                    <option value="G">金字(+500)</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr style="background-color: #fad3d3;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">訂購人姓名</td>
+                            <td><Input type="text" name="orderuser"></td>
+                        </tr>
+                        <tr style="background-color: #fad3d3;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">聯絡電話</td>
+                            <td><Input type="text" name="orderusertel"></td>
+                        </tr>
+                        <tr style="background-color: #fad3d3;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">EMail</td>
+                            <td><Input type="text" name="orderuseremail"></td>
+                        </tr>
+                        <tr style="background-color: #fad3d3;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">交貨地址</td>
+                            <td><Input type="text" name="orderuseraddr"></td>
+                        </tr>
+
+                        <tr style="background-color: #fad3d3;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">備註</td>
+                            <td><textarea name="orderusermemo" rows="3" maxlength="60"
+                                    onkeydown="this.value=this.value.substring(0,60)"
+                                    onkeyup="this.value=this.value.substring(0,60)"
+                                    style="word-break:break-all;overflow: hidden;resize:none "></textarea>
+                            </td>
+                        </tr>
+                        <tr style="background-color: #dcffea;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">金額</td>
+                            <td><span id="ordertotal">$2,000</span></td>
+
+                            <input id='Rwprice' name="Rwprice" value="0" type="hidden">
+                        </tr>
+                        <tr style="background-color: #dcffea;">
+                            <td class="tdshow1" style="background-color: #ff00001c;">訂單備註</td>
+                            <td><span id="ordermemo"></span></td>
+                            <input id='Rwpricetype' name="rwpricetype" value="" type="hidden">
+                        </tr>
+
+                    </tbody>
+                </table>
+                <input type="hidden" name="orderpic" id="orderpic" />
+            </div>
+        </main>
+        <div id="spaceb"> </div>
+        <footer>
+            Footer
+        </footer>
+    </div>
+</body>
 
 </html>
