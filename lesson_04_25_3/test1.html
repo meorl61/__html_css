@@ -28,8 +28,22 @@
             max-width: 500px;
             width: auto;
             grid-area: section;
+            position: relative;
         }
 
+        #picarea {
+            max-width: 500px;
+            position: relative;
+            display: flex;
+            justify-content: center;            
+        }
+        
+        #picarea::after {
+            display: block;
+            content: "";
+            clear: both;
+        }
+        
         main {
             grid-area: main;
         }
@@ -38,19 +52,7 @@
             grid-area: footer;
         }
 
-        #picarea {
-            max-width: 500px;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            writing-mode: vertical-rl;
-        }
-
-        #picarea::after {
-            display: block;
-            content: "";
-            clear: both;
-        }
+        
 
         #picimg {
             
@@ -71,6 +73,7 @@
             display: grid;
             grid-template-rows: 1fr 2fr 1fr;
             grid-template-columns: auto;
+            writing-mode:vertical-rl;
         }
 
         #spacea {
@@ -110,23 +113,23 @@
             Header
         </header>
         <div id="spacea"> </div>
-        <section>
+        <section>            
             <div id="picarea">
+                
                 <div id="picimg">
-                    <!--
-                     <img src="../data/finish/賀匾45x96.png" alt="" width="100%">
-                -->
+                    <img src="../data/finish/賀匾45x96.png" alt="" width="100%">                    
                 </div>
                 <div id="picword">
                     <div id="wordM">開市大吉</div>
                     <div id="wordR">開幕誌慶</div>
                     <div id="wordL">癸卯年吉月吉時</div>
                 </div>
-
+                
             </div>
+            
         </section>
 
-        <main>
+        <main>45
 
             <div id="setarea">
                 <table class="table">
